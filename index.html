@@ -19,10 +19,16 @@ html{scroll-behavior:smooth;height:100%}
 body{background:var(--bg);color:var(--t1);font-family:var(--b);font-weight:300;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 1.5rem;overflow-x:hidden;position:relative}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(232,0,45,0.04) 0%,transparent 70%)}
 #bg-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+/* Accents */
 .top-accent{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red) 30%,var(--red) 70%,transparent);z-index:10}
 .left-accent{position:fixed;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--red) 0%,rgba(232,0,45,0) 60%);z-index:10}
+
+/* Wrap */
 .wrap{position:relative;z-index:5;width:100%;max-width:440px;display:flex;flex-direction:column;gap:0}
-.header{text-align:center;padding:0 0 2.5rem;opacity:0;transform:translateY(16px);animation:rise 0.7s ease 0.1s forwards}
+
+/* Header */
+.header{text-align:center;padding:0 0 1.6rem;opacity:0;transform:translateY(16px);animation:rise 0.7s ease 0.1s forwards}
 .avatar{width:72px;height:72px;border:1px solid var(--border2);background:var(--bg2);display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;position:relative}
 .avatar::before{content:'';position:absolute;inset:-4px;border:1px solid var(--red);opacity:0.4}
 .avatar-initials{font-family:var(--bc);font-size:1.4rem;font-weight:800;letter-spacing:0.1em;color:var(--red)}
@@ -30,12 +36,30 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .name em{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.2);font-style:normal}
 .role{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);margin-bottom:0.7rem;display:flex;align-items:center;justify-content:center;gap:0.8rem}
 .role::before,.role::after{content:'';display:block;width:20px;height:1px;background:var(--red);opacity:0.5}
-.bio{font-size:0.8rem;line-height:1.75;color:var(--t2);max-width:300px;margin:0 auto}
-.status-bar{display:flex;align-items:center;justify-content:center;gap:0.6rem;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);margin-bottom:2rem;font-family:var(--mono);font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);opacity:0;animation:rise 0.7s ease 0.3s forwards}
+.bio{font-size:0.8rem;line-height:1.75;color:var(--t2);max-width:300px;margin:0 auto 1rem}
+
+/* Elusive ambient tag */
+.elusive-tag{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-family:var(--mono);font-size:0.48rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--t3);margin:0 auto;
+  padding:0.3rem 0.7rem;
+  border:1px solid rgba(255,255,255,0.06);
+  background:rgba(255,255,255,0.02);
+  backdrop-filter:blur(8px);
+}
+.elusive-dot{width:4px;height:4px;border-radius:50%;background:rgba(232,0,45,0.7);box-shadow:0 0 5px rgba(232,0,45,0.5);animation:blink 3s ease-in-out infinite}
+
+/* Status bar */
+.status-bar{display:flex;align-items:center;justify-content:center;gap:0.6rem;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);margin-bottom:2rem;font-family:var(--mono);font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);opacity:0;animation:rise 0.7s ease 0.3s forwards;margin-top:1.4rem}
 .status-dot{width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 6px var(--red);animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+
+/* Section label */
 .sec-label{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--t3);display:flex;align-items:center;gap:0.8rem;margin-bottom:0.6rem;padding:0 0.1rem}
 .sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* Cards */
 .links-group{display:flex;flex-direction:column;gap:2px;margin-bottom:1rem}
 .link-card{
   display:flex;align-items:center;gap:1.2rem;padding:1rem 1.2rem;
@@ -50,32 +74,15 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .link-card::before{
   content:'';position:absolute;
   top:0;left:-100%;width:60%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.05),transparent);
   transform:skewX(-20deg);
   transition:left 0s;
-  pointer-events:none;
+  pointer-events:none;z-index:2;
 }
-.link-card:hover::before{
-  left:160%;
-  transition:left 0.55s ease;
-}
-.link-card::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,0.025) 0%,transparent 60%);
-  pointer-events:none;
-}
-.link-card:hover{
-  background:rgba(255,255,255,0.06);
-  border-left-color:var(--red);
-  box-shadow:0 0 20px rgba(232,0,45,0.08),inset 0 0 20px rgba(255,255,255,0.01);
-}
-.lc-icon{
-  width:34px;height:34px;flex-shrink:0;
-  border:1px solid rgba(255,255,255,0.1);
-  background:rgba(255,255,255,0.03);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;z-index:1;
-}
+.link-card:hover::before{left:160%;transition:left 0.55s ease}
+.link-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.025) 0%,transparent 60%);pointer-events:none}
+.link-card:hover{background:rgba(255,255,255,0.06);border-left-color:var(--red);box-shadow:0 0 20px rgba(232,0,45,0.08),inset 0 0 20px rgba(255,255,255,0.01)}
+.lc-icon{width:34px;height:34px;flex-shrink:0;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
 .lc-icon svg{width:16px;height:16px;fill:none;stroke:var(--t2);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke 0.2s}
 .link-card:hover .lc-icon svg{stroke:var(--red)}
 .lc-body{flex:1;position:relative;z-index:1}
@@ -85,31 +92,65 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .lc-arrow{font-family:var(--mono);font-size:0.65rem;color:var(--t3);transition:color 0.2s,transform 0.2s;position:relative;z-index:1}
 .link-card:hover .lc-arrow{color:var(--red);transform:translateX(4px)}
 .lc-badge{font-family:var(--mono);font-size:0.44rem;padding:0.12rem 0.4rem;letter-spacing:0.1em;border:1px solid rgba(232,0,45,0.35);color:var(--red);background:rgba(232,0,45,0.06);text-transform:uppercase;margin-left:0.5rem;vertical-align:middle}
-.stats-row{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:2rem;
-}
-.stat{
-  background:rgba(255,255,255,0.03);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:2rem}
+.stat{background:rgba(255,255,255,0.03);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.07);padding:0.9rem 1rem;text-align:center;position:relative;overflow:hidden}
+.stat::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.03) 0%,transparent 60%);pointer-events:none}
+.stat-n{font-family:var(--bc);font-size:1.6rem;font-weight:700;color:var(--white);line-height:1;position:relative;z-index:1}
+.stat-k{font-family:var(--mono);font-size:0.46rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--t3);margin-top:0.2rem;position:relative;z-index:1}
+
+/* Terminal */
+.terminal{
+  margin-bottom:1.4rem;
   border:1px solid rgba(255,255,255,0.07);
-  padding:0.9rem 1rem;text-align:center;
-  position:relative;overflow:hidden;
+  background:rgba(4,4,4,0.7);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  overflow:hidden;
+  position:relative;
 }
-.stat::after{
+.terminal::before{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,0.03) 0%,transparent 60%);
+  background:linear-gradient(135deg,rgba(255,255,255,0.015) 0%,transparent 50%);
   pointer-events:none;
 }
-.stat-n{font-family:var(--bc);font-size:1.6rem;font-weight:700;color:var(--white);line-height:1}
-.stat-n sub{font-size:0.8rem;color:var(--red);font-family:var(--bc)}
-.stat-k{font-family:var(--mono);font-size:0.46rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--t3);margin-top:0.2rem}
+.terminal-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.4rem 0.8rem;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  background:rgba(255,255,255,0.02);
+}
+.terminal-dots{display:flex;gap:0.35rem}
+.terminal-dots span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.08)}
+.terminal-dots span:first-child{background:rgba(232,0,45,0.5)}
+.terminal-title{font-family:var(--mono);font-size:0.44rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--t3)}
+.terminal-body{padding:0.7rem 0.9rem;min-height:80px;max-height:100px;overflow:hidden;position:relative;z-index:1}
+.t-line{
+  font-family:var(--mono);font-size:0.58rem;line-height:1.9;
+  color:rgba(255,255,255,0.35);
+  white-space:nowrap;overflow:hidden;
+  opacity:0;
+  transition:opacity 0.3s;
+}
+.t-line.visible{opacity:1}
+.t-line.active{color:rgba(255,255,255,0.75)}
+.t-line .prompt{color:var(--red);margin-right:0.4rem}
+.t-line .ok{color:rgba(80,220,100,0.8)}
+.t-line .dim{color:rgba(255,255,255,0.2)}
+.t-cursor{display:inline-block;width:6px;height:0.65rem;background:var(--red);vertical-align:middle;animation:blink 1s step-end infinite;margin-left:2px}
+
+/* Footer */
 .footer{margin-top:2rem;text-align:center;font-family:var(--mono);font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);opacity:0;animation:rise 0.7s ease 0.8s forwards}
 .footer em{color:var(--red);font-style:normal}
+
+/* Animations */
 @keyframes rise{to{opacity:1;transform:none}}
 .anim-1{opacity:0;transform:translateY(14px);animation:rise 0.6s ease 0.35s forwards}
 .anim-2{opacity:0;transform:translateY(14px);animation:rise 0.6s ease 0.45s forwards}
 .anim-3{opacity:0;transform:translateY(14px);animation:rise 0.6s ease 0.55s forwards}
 .anim-4{opacity:0;transform:translateY(14px);animation:rise 0.6s ease 0.65s forwards}
+.anim-5{opacity:0;transform:translateY(14px);animation:rise 0.6s ease 0.75s forwards}
+
 @media(max-width:480px){body{padding:2rem 1rem}.name{font-size:2rem}}
 </style>
 </head>
@@ -117,18 +158,39 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 <canvas id="bg-canvas"></canvas>
 <div class="top-accent"></div>
 <div class="left-accent"></div>
+
 <div class="wrap">
+
+  <!-- Header -->
   <div class="header">
     <div class="avatar"><span class="avatar-initials">AN</span></div>
     <h1 class="name">A.<em>NAYEM</em></h1>
     <div class="role">AI Architect · Cybersecurity · CS Undergrad</div>
     <p class="bio">Self-taught builder at the intersection of AI, automation and cybersecurity. Building systems that run themselves - no handler required.</p>
+    <div class="elusive-tag">
+      <span class="elusive-dot"></span>
+      ELUSIVE &nbsp;·&nbsp; core system &nbsp;·&nbsp; always running
+    </div>
   </div>
 
+  <!-- Status -->
   <div class="status-bar"><div class="status-dot"></div>Systems online &nbsp;·&nbsp; Open to build &amp; collaborate</div>
 
-  <div class="sec-label anim-1">01 — portfolio &amp; agency</div>
-  <div class="links-group anim-1">
+  <!-- Terminal -->
+  <div class="terminal anim-1">
+    <div class="terminal-bar">
+      <div class="terminal-dots"><span></span><span></span><span></span></div>
+      <div class="terminal-title">elusive@an-0001 ~ $</div>
+      <div class="terminal-title dim">tty0</div>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+      <!-- lines injected by JS -->
+    </div>
+  </div>
+
+  <!-- 01 Portfolio & Agency -->
+  <div class="sec-label anim-2">01 — portfolio &amp; agency</div>
+  <div class="links-group anim-2">
     <a href="https://alifnayem.vercel.app" target="_blank" class="link-card" style="border-left:2px solid rgba(232,0,45,0.4);background:rgba(232,0,45,0.04)">
       <div class="lc-icon" style="border-color:rgba(232,0,45,0.25)"><svg viewBox="0 0 24 24" style="stroke:var(--red)"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
       <div class="lc-body"><div class="lc-label">Portfolio</div><div class="lc-val" style="color:var(--red)">alifnayem.vercel.app</div></div>
@@ -141,8 +203,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
     </a>
   </div>
 
-  <div class="sec-label anim-2">02 — projects</div>
-  <div class="links-group anim-2">
+  <!-- 02 Projects -->
+  <div class="sec-label anim-3">02 — projects</div>
+  <div class="links-group anim-3">
     <a href="https://spectre-vault.vercel.app" target="_blank" class="link-card">
       <div class="lc-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
       <div class="lc-body"><div class="lc-label">Project — Live</div><div class="lc-val">Spectre Vault <span class="lc-badge">4-agent AI</span></div></div>
@@ -165,14 +228,16 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
     </a>
   </div>
 
-  <div class="stats-row anim-3">
+  <!-- Stats -->
+  <div class="stats-row anim-4">
     <div class="stat"><div class="stat-n">13</div><div class="stat-k">Projects</div></div>
     <div class="stat"><div class="stat-n">5</div><div class="stat-k">Live Deploys</div></div>
-    <div class="stat"><div class="stat-n" style="color:var(--red);font-size:0.75rem;padding-top:0.4rem;letter-spacing:0.04em">LET'S BUILD</div><div class="stat-k">Availability</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--red);font-size:0.75rem;padding-top:0.4rem;letter-spacing:0.04em;position:relative;z-index:1">LET'S BUILD</div><div class="stat-k">Availability</div></div>
   </div>
 
-  <div class="sec-label anim-3">03 — connect</div>
-  <div class="links-group anim-3">
+  <!-- 03 Connect -->
+  <div class="sec-label anim-4">03 — connect</div>
+  <div class="links-group anim-4">
     <a href="https://instagram.com/_a.nayem_" target="_blank" class="link-card">
       <div class="lc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
       <div class="lc-body"><div class="lc-label">Instagram</div><div class="lc-val">@_a.nayem_</div></div>
@@ -199,6 +264,73 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
 </div>
 
 <script>
+/* ── Terminal ── */
+(function(){
+  const lines = [
+    { text: 'elusive --status', type: 'cmd' },
+    { text: 'core system ONLINE · tools: 55+ · inference: local', type: 'ok' },
+    { text: 'nmap -sV --open 192.168.1.0/24', type: 'cmd' },
+    { text: 'scanning... 3 hosts up · 7 open ports detected', type: 'out' },
+    { text: 'ollama run deepseek-r1:7b', type: 'cmd' },
+    { text: 'model loaded · ctx: 8192 · backend: CPU', type: 'ok' },
+    { text: 'python3 agent_orchestrator.py --mode autonomous', type: 'cmd' },
+    { text: 'spawning 6 agents · memory bus: active', type: 'ok' },
+    { text: 'htop --filter elusive', type: 'cmd' },
+    { text: 'PID 3847 · CPU 12% · MEM 2.1GB · uptime: 14h', type: 'out' },
+    { text: 'git log --oneline -3', type: 'cmd' },
+    { text: 'a3f2c1d fix: agent memory flush on shutdown', type: 'out' },
+    { text: 'systemctl status elusive.service', type: 'cmd' },
+    { text: '● elusive.service — active (running) since boot', type: 'ok' },
+  ];
+
+  const body = document.getElementById('terminal-body');
+  const VISIBLE = 4;
+  let pool = [];
+  let idx = 0;
+
+  function makeLine(data) {
+    const el = document.createElement('div');
+    el.className = 't-line';
+    if (data.type === 'cmd') {
+      el.innerHTML = `<span class="prompt">❯</span>${data.text}`;
+    } else if (data.type === 'ok') {
+      el.innerHTML = `<span class="dim">//</span> <span class="ok">${data.text}</span>`;
+    } else {
+      el.innerHTML = `<span class="dim">  ${data.text}</span>`;
+    }
+    return el;
+  }
+
+  function addLine() {
+    const data = lines[idx % lines.length];
+    idx++;
+
+    const el = makeLine(data);
+    body.appendChild(el);
+    pool.push(el);
+
+    // Fade in
+    requestAnimationFrame(() => {
+      el.classList.add('visible');
+      if (data.type === 'cmd') el.classList.add('active');
+    });
+
+    // Keep only VISIBLE lines, fade out old ones
+    if (pool.length > VISIBLE) {
+      const old = pool.shift();
+      old.classList.remove('visible', 'active');
+      setTimeout(() => old.remove(), 350);
+    }
+
+    // Schedule next line
+    const delay = data.type === 'cmd' ? 1800 : 900;
+    setTimeout(addLine, delay);
+  }
+
+  setTimeout(addLine, 1200);
+})();
+
+/* ── Starfield Canvas ── */
 (function(){
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
@@ -215,10 +347,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
   function rand(a,b){ return a + Math.random()*(b-a); }
 
   function init(){
-    // Stars — mix of white and very faint red-tinted
     stars = Array.from({length: 180}, () => ({
-      x: rand(0, W),
-      y: rand(0, H),
+      x: rand(0, W), y: rand(0, H),
       r: rand(0.2, 1.4),
       opacity: rand(0.08, 0.55),
       speed: rand(0.015, 0.06),
@@ -226,11 +356,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
       twinkleSpeed: rand(0.004, 0.018),
       red: Math.random() < 0.08
     }));
-
-    // Floating dust particles with slow drift
     nebula = Array.from({length: 40}, () => ({
-      x: rand(0, W),
-      y: rand(0, H),
+      x: rand(0, W), y: rand(0, H),
       r: rand(0.5, 2.2),
       opacity: rand(0.03, 0.12),
       vx: rand(-0.08, 0.08),
@@ -242,7 +369,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
   function draw(){
     ctx.clearRect(0,0,W,H);
 
-    // Deep space gradient base
     const bg = ctx.createRadialGradient(W*0.5, H*0.2, 0, W*0.5, H*0.5, H*0.9);
     bg.addColorStop(0, 'rgba(14,8,8,1)');
     bg.addColorStop(0.4, 'rgba(8,8,8,1)');
@@ -250,55 +376,43 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;bac
     ctx.fillStyle = bg;
     ctx.fillRect(0,0,W,H);
 
-    // Subtle red nebula glow top-center
     const nebGlow = ctx.createRadialGradient(W*0.5, 0, 0, W*0.5, H*0.3, W*0.5);
     nebGlow.addColorStop(0, 'rgba(232,0,45,0.035)');
     nebGlow.addColorStop(1, 'transparent');
     ctx.fillStyle = nebGlow;
     ctx.fillRect(0,0,W,H);
 
-    // Dust particles
     for(const p of nebula){
       p.x += p.vx; p.y += p.vy;
-      if(p.x < -5) p.x = W+5;
-      if(p.x > W+5) p.x = -5;
-      if(p.y < -5) p.y = H+5;
-      if(p.y > H+5) p.y = -5;
+      if(p.x < -5) p.x = W+5; if(p.x > W+5) p.x = -5;
+      if(p.y < -5) p.y = H+5; if(p.y > H+5) p.y = -5;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fillStyle = p.red ? RED + p.opacity + ')' : WHITE + p.opacity + ')';
+      ctx.fillStyle = p.red ? RED+p.opacity+')' : WHITE+p.opacity+')';
       ctx.fill();
     }
 
-    // Stars with twinkle
     const t = performance.now() * 0.001;
     for(const s of stars){
       s.twinkle += s.twinkleSpeed;
       const pulse = s.opacity * (0.6 + 0.4 * Math.sin(s.twinkle));
-      // slow vertical drift
       s.y -= s.speed * 0.3;
       if(s.y < -2) s.y = H + 2;
-
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-      ctx.fillStyle = s.red ? RED + pulse + ')' : WHITE + pulse + ')';
+      ctx.fillStyle = s.red ? RED+pulse+')' : WHITE+pulse+')';
       ctx.fill();
-
-      // Cross flare on brighter stars
       if(s.r > 1.0 && pulse > 0.3){
         const fl = pulse * 0.18;
-        ctx.strokeStyle = s.red ? RED + fl + ')' : WHITE + fl + ')';
+        ctx.strokeStyle = s.red ? RED+fl+')' : WHITE+fl+')';
         ctx.lineWidth = 0.5;
         ctx.beginPath();
-        ctx.moveTo(s.x - s.r*3, s.y);
-        ctx.lineTo(s.x + s.r*3, s.y);
-        ctx.moveTo(s.x, s.y - s.r*3);
-        ctx.lineTo(s.x, s.y + s.r*3);
+        ctx.moveTo(s.x - s.r*3, s.y); ctx.lineTo(s.x + s.r*3, s.y);
+        ctx.moveTo(s.x, s.y - s.r*3); ctx.lineTo(s.x, s.y + s.r*3);
         ctx.stroke();
       }
     }
 
-    // Horizontal scan line — subtle, slow
     const scanY = ((t * 18) % (H + 40)) - 20;
     const scan = ctx.createLinearGradient(0, scanY-1, 0, scanY+1);
     scan.addColorStop(0, 'transparent');
